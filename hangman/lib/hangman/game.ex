@@ -1,13 +1,22 @@
 defmodule Hangman.Game do
-  defstruct [
-    game_state: :initializing,
-    letters: [],
-    turns_left: 7,
-  ]
+  defstruct game_state: :initializing,
+            letters: [],
+            turns_left: 7
 
   def new_game() do
     %Hangman.Game{
       letters: Dictionary.random_word() |> String.codepoints()
     }
+  end
+
+  def make_move(game = %Hangman.Game{game_state: state}, _guess) when state in [:won, :lost] do
+    {game, tally(game)}
+  end
+
+  def make_move(game, guess) do
+  end
+
+  def tally(game) do
+    123
   end
 end

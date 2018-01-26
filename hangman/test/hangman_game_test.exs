@@ -59,4 +59,17 @@ defmodule Hangman.GameTest do
     assert game.game_state == :won
     assert game.turns_left == 7
   end
+
+  test "running out of turns left results in lost game" do
+    game = Game.new_game("w")
+    {game, _tally} = Game.make_move(game, "a")
+    {game, _tally} = Game.make_move(game, "b")
+    {game, _tally} = Game.make_move(game, "c")
+    {game, _tally} = Game.make_move(game, "d")
+    {game, _tally} = Game.make_move(game, "e")
+    {game, _tally} = Game.make_move(game, "f")
+    {game, _tally} = Game.make_move(game, "g")
+    assert game.game_state == :lost
+    assert game.turns_left == 0
+  end
 end

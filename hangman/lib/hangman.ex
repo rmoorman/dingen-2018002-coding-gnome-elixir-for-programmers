@@ -1,11 +1,13 @@
 defmodule Hangman do
-  alias Hangman.Game
 
-  defdelegate new_game(), to: Game
-  defdelegate tally(game), to: Game
+  alias Hangman.Server
 
-  def make_move(game, guess) do
-    game = Game.make_move(game, guess)
-    {game, tally(game)}
+  def new_game() do
+    {:ok, game_pid} = Supervisor.start_child(Hangman.Supervisor, [])
+    game_pid
   end
+
+  defdelegate tally(game_pid), to: Server
+  defdelegate make_move(game_pid, guess), to: Server
+
 end

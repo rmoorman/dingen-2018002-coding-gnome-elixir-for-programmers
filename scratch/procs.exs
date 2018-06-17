@@ -1,8 +1,11 @@
 defmodule Procs do
 
-  def greeter(name) do
-    Process.sleep(1000)
-    IO.puts("Hello #{name}")
+  def greeter(what_to_say) do
+    receive do
+      msg ->
+        IO.puts("#{what_to_say}: #{msg}")
+    end
+    greeter(what_to_say)
   end
 
 end

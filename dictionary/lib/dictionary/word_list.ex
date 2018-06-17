@@ -1,13 +1,15 @@
 defmodule Dictionary.WordList do
 
+  @me __MODULE__
+
   @spec start_link() :: Agent.on_start
   def start_link() do
-    Agent.start_link(&word_list/0)
+    Agent.start_link(&word_list/0, name: @me)
   end
 
-  @spec random_word(pid) :: String.t
-  def random_word(agent) do
-    Agent.get(agent, &Enum.random/1)
+  @spec random_word() :: String.t
+  def random_word() do
+    Agent.get(@me, &Enum.random/1)
   end
 
   @spec word_list() :: [String.t()]

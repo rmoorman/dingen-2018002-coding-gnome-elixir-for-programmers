@@ -1,9 +1,13 @@
 defmodule Dictionary.WordList do
 
-  @spec random_word([String.t]) :: String.t
-  def random_word(word_list) do
-    word_list
-    |> Enum.random()
+  @spec start_link() :: Agent.on_start
+  def start_link() do
+    Agent.start_link(&word_list/0)
+  end
+
+  @spec random_word(pid) :: String.t
+  def random_word(agent) do
+    Agent.get(agent, &Enum.random/1)
   end
 
   @spec word_list() :: [String.t()]

@@ -8,7 +8,6 @@ defmodule Procs do
     greeter(what_to_say)
   end
 
-
   def counter(count \\ 0) when is_integer(count) do
     receive do
       {:add, amount} when is_integer(amount) ->
@@ -20,4 +19,17 @@ defmodule Procs do
         counter(count)
     end
   end
+
+  def fuse() do
+    receive do
+      :boom ->
+        exit(:boom)
+      :defuse ->
+        exit(:normal)
+      _ ->
+        IO.puts("Ah ah ah, you didn't say the magic word")
+        fuse()
+    end
+  end
+
 end

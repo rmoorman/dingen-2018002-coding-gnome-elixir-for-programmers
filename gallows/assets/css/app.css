@@ -1,1 +1,15 @@
 /* This file is for your main application css. */
+
+html body {
+  background-color: #caaad1;
+}
+
+body .jumbotron {
+  padding: 0;
+  overflow: hidden;
+}
+
+body .jumbotron img {
+  max-width: 100%;
+  object-fit: cover;
+}

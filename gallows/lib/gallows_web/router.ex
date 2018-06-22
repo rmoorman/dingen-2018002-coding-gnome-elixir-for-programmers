@@ -13,14 +13,13 @@ defmodule GallowsWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", GallowsWeb do
+  scope "/hangman", GallowsWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-  end
+    get "/", HangmanController, :new_game
+    post "/", HangmanController, :create_game
 
-  # Other scopes may use custom stacks.
-  # scope "/api", GallowsWeb do
-  #   pipe_through :api
-  # end
+    get "/game-field", HangmanController, :game_field
+    put "/game-field", HangmanController, :make_move
+  end
 end

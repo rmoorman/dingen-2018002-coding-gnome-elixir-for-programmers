@@ -20,5 +20,6 @@ defmodule GallowsWeb.Router do
     post "/", HangmanController, :create_game
 
     get "/game-field", HangmanController, :game_field
+    put "/game-field", HangmanController, :make_move
   end
 end

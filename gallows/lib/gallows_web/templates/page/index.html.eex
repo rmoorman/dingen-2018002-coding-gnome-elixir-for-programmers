@@ -1,0 +1,6 @@
+<div class="jumbotron">
+  <img
+    src="<%= static_path(@conn, "/images/become-a-programmer-have-to-write-css.jpg") %>"
+    alt="become a programmer"
+  >
+</div>

@@ -1,5 +1,6 @@
 import HangmanSocket from "./hangman_socket"
 
 window.onload = () => {
-  new HangmanSocket()
+  const hangman = new HangmanSocket()
+  hangman.connect()
 }

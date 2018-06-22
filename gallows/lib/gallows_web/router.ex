@@ -17,5 +17,8 @@ defmodule GallowsWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", HangmanController, :new_game
+    post "/", HangmanController, :create_game
+
+    get "/game-field", HangmanController, :game_field
   end
 end
